@@ -1,0 +1,43 @@
+.dragon.fullpage{
+    position: relative !important;
+}
+
+.bottom-panel {
+    position: absolute;
+    width: 100%;
+    z-index: 1000 !important;
+    height: 300px;
+    background-color: blueviolet;
+    display: none;
+}
+
+.overlay1__el{
+    transition: all .3s;
+    border: 8px solid transparent;
+}
+
+#nav-viewer {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: black;
+    overflow: hidden;
+}
+
+.selection {
+    position: absolute;
+    border: 1px solid red;
+    z-index: 20;
+}
+
+/* #seadragon-viewer {
+    position: relative;
+    left: 0;
+    top: 30px;
+    right: 0;
+    bottom: 0;
+} */
+

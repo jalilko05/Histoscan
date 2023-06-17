@@ -1,0 +1,197 @@
+.medicine {
+    margin-bottom: 112px;
+
+    &__title {
+        font-size: 18px;
+        line-height: 28px;
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        color: #000000;
+        margin-bottom: 40px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 100px);
+        grid-column-gap: 42px;
+        grid-row-gap: 22px;
+    }
+
+    &__item {
+        box-sizing: border-box;
+        width: 100px;
+        height: 128px;
+    }
+
+    &__item.item-is-full {
+        .medicine__file-del {
+            display: block;
+        }
+
+        .load-images__label.add-file {
+            display: none;
+        }
+
+        .load-images__label.load-input {
+            display: none;
+        }
+    }
+
+    &__item.item-is-empty {
+        .medicine__file-del {
+            display: none;
+        }
+
+        .load-images__label.add-file {
+            display: block;
+        }
+
+        .load-images__label.load-input {
+            display: block;
+        }
+    }
+
+    .load-images__label.load-input.primary-btn {
+        min-width: auto;
+        width: 100px;
+        height: 100px;
+        z-index: 200;
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    &__item-add {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        border: 1px dashed #c5c6c9;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+
+        svg {
+            width: 32px;
+            height: 32px;
+
+            path {
+                fill: #d4d5d6;
+            }
+        }
+    }
+
+    &__item-title {
+        font-size: 14px;
+        line-height: 28px;
+        font-weight: 700;
+        font-family: 'Montserrat-Bold';
+        color: #6a6a6a;
+    }
+
+    &__item-title.block-uppercase {
+        text-transform: uppercase;
+    }
+
+    &__file {
+        box-sizing: border-box;
+        padding: 6px;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #c5c6c9;
+        background-color: #ffffff;
+        position: relative;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        .load-images__label{
+            cursor: pointer;
+            max-height: 100px;
+            padding: 0;            
+            transform: translateY(-6px);
+        }
+    }
+
+    &__file-del {
+        z-index: 200;
+        position: absolute;
+        width: 12px;
+        height: 11px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .load-images__label {
+        background-color: transparent;
+        max-width: 100px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .load-images__input.manager-input {
+        display: block;
+        opacity: 0;
+    }
+
+    &__file-add {
+        .load-images__label.add-file {
+            z-index: 100;
+            height: 14px;
+            width: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            position: absolute;
+            font-size: 14px;
+            line-height: 100%;
+            font-weight: 400;
+            font-family: 'Montserrat-Regular';
+            color: #3c9bb8;
+            border-bottom: 1px solid #3c9bb8;
+        }
+
+        .load-images__label.addFile-is-active {
+            overflow-y: scroll;
+            top: 48px;
+            height: 90px;
+            width: 80px;
+            padding: 3px;
+            word-break: break-word;
+            text-align: center;
+            border-bottom: none;
+        }
+
+        .load-images__label.add-file.input-value-block {
+            position: relative;
+            top: 75px;
+            width: 86px;
+            height: 100px;
+            text-align: center;
+            padding: 4px;
+            word-wrap: break-word;
+            overflow-y: scroll;
+            display: block;
+        }
+    }
+
+}
+
+.input-value-block {
+    position: relative;
+    top: 75px;
+    width: 86px;
+    height: 100px;
+    text-align: center;
+    padding: 4px;
+    word-wrap: break-word;
+    overflow-y: scroll;
+    display: block;
+}
+
+@media(max-width: 992px){
+    .medicine{
+        margin-bottom: 70px;
+    }
+}

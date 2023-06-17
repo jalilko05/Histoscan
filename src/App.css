@@ -1,0 +1,80 @@
+.openseadragon-container > div:focus {
+  outline: none;
+}
+
+.zoom{
+  width: 200px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rotate{
+  width: 200px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Panel button{
+  color: white;
+  height: 50px;
+}
+.Panel{
+  background: white;
+  width: 330px;
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  overflow: auto;
+  -webkit-box-shadow: -15px 3px 31px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -15px 3px 31px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: -15px 3px 31px 0px rgba(34, 60, 80, 0.2);
+} 
+
+.panelWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  overflow: auto;
+  height: 100vh;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+
+.Panel2{
+  width: 350px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+  padding: 10px;
+  
+}
+
+.Panel2 img{
+  width: 200px;
+}
+
+.Panel2 li{
+  color: white;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+.RelatedImages{
+  width:500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

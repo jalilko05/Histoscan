@@ -1,0 +1,94 @@
+.subscription-page {
+    &__item {
+        display: flex;
+    }
+
+    &__content {
+        margin-left: 125px;
+        width: 100%;
+        margin-bottom: 212px;
+    }
+
+    &__el {
+        .subscription-primary__link {
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: -124px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__user,
+    &__tel {
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 30px;
+
+        span {
+            font-size: 18px;
+            line-height: 100%;
+            font-weight: 700;
+            font-family: 'Montserrat-Bold';
+        }
+    }
+
+    &__tel {
+        border-bottom: 1px solid #b5b5b5;
+        padding-bottom: 46px;
+    }
+
+}
+
+@media(max-width: 1940px) {
+    .subscription-page__el .back-link {
+        left: 17px;
+        top: -36px;
+    }
+}
+
+@media(max-width: 780px) {
+    .search-bar {
+        margin-bottom: 80px;
+    }
+
+    .subscription-page {
+        &__el {
+            margin-left: 40px;
+            margin-bottom: 80px;
+        }
+
+        &__item {
+            flex-direction: column;
+        }
+
+        &__content {
+            margin-left: 40px;
+            margin-bottom: 120px;
+        }
+    }
+}
+
+@media(max-width: 640px) {
+    .subscription-page {
+        .primary-title {
+            margin-bottom: 90px;
+        }
+
+        &__el,
+        &__content {
+            margin-left: 0;
+        }
+    }
+    .back-link {
+        img {
+            width: 40px;
+            height: auto;
+        }
+    }
+}

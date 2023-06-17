@@ -1,0 +1,45 @@
+.promo {
+    max-width: 536px;
+    margin: 0 auto 210px;
+    text-align: center;
+
+    &__field {
+        max-width: 500px;
+        width: 100%;
+        border: 1px solid #4d4e50;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        padding: 23px 16px;
+        font-weight: 700;
+        font-family: 'Montserrat-Bold';
+        font-size: 20px;
+        color: #000000;
+        line-height: 28px;
+        text-transform: uppercase;
+        margin-bottom: 50px;
+
+        &::placeholder {
+            font-weight: 700;
+            font-family: 'Montserrat-Bold';
+            font-size: 18px;
+            color: #000000;
+            line-height: 100%;
+            text-transform: uppercase;
+        }
+    }
+
+}
+
+@media(max-width: 640px){
+    .promo{
+        margin: 0 auto 100px !important;
+    }
+}
+
+@media(max-width: 400px) {
+    .promo {
+        &__field {
+            margin-bottom: 30px;
+        }
+    }
+}

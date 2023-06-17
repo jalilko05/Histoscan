@@ -1,0 +1,25 @@
+.account {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 1400px) {
+    .account {
+        flex-direction: column;
+
+        .chat-inner {
+            order: 1;
+        }
+
+        .user-subscription {
+            order: 0;
+            margin-bottom: 24px;
+        }
+    }
+}
+
+@media(max-width: 576px) {
+    .back-link img {
+        width: 26px;
+    }
+}

@@ -1,0 +1,26 @@
+.header {
+    &__inner {
+        padding: 25px 0 12px 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}
+
+@media(max-width: 1580px) {
+    .header {
+        &__inner {
+            flex-direction: column;
+        }
+    }
+
+    .logo {
+        margin-bottom: 16px;
+    }
+
+    .navigation {
+        margin: 0 auto;
+        margin-left: 0;
+    }
+}
+

@@ -1,0 +1,542 @@
+.user-case {
+    margin-bottom: 132px;
+
+    .type-message__btn {
+        transform: translateY(-36px);
+        margin-right: 20px;
+        margin-left: 97%;
+    }
+
+    .type-message__text {
+        max-width: 410px;
+    }
+
+    &__title {
+        margin-bottom: 82px;
+    }
+
+    &__subtitle {
+        font-size: 26px;
+        line-height: 100%;
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        color: #8f8f8f;
+        margin-bottom: 20px;
+    }
+
+    &__inner {
+        display: flex;
+    }
+
+    &__primary {
+        max-width: 536px;
+        width: 100%;
+
+        .chat-item {
+            padding: 40px;
+            background-color: #fafafa;
+        }
+    }
+
+    &__secondary {
+        margin-left: 48px;
+        background-color: #fafafa;
+        padding: 30px 24px 30px 34px;
+        box-shadow: 3.5px 6.062px 24px 0 #ddd;
+        max-width: 664px;
+        width: 100%;
+    }
+
+    &__block {
+        margin-left: 48px;
+        padding-left: 48px;
+        border-left: 1px solid #b5b5b5;
+    }
+
+    &__description {
+        padding-bottom: 42px;
+        position: relative;
+    }
+
+    &__edit {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+
+        svg {
+            width: 42px;
+            height: 42px;
+        }
+    }
+
+    &__medicine.medicine {
+        margin-bottom: 40px;
+    }
+
+    .cases__control-share,
+    .cases__control-download {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        color: #3c9bb8;
+        border-bottom: 1px solid #3c9bb8;
+        position: relative;
+    }
+
+    &__control {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__btn {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &__control {
+        .cases__control-share {
+            margin-right: 20px;
+
+            .share-icon {
+                position: absolute;
+                content: "";
+                right: -16px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 10px;
+                height: 15px;
+            }
+        }
+
+        .cases__control-download {
+            .arch-icon {
+                position: absolute;
+                right: -24px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 17px;
+                height: 15px;
+            }
+        }
+    }
+
+}
+
+// classes for double block
+
+.medicine--second {
+    margin-bottom: 112px;
+}
+
+.medicine__title {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    font-family: 'Montserrat-Regular';
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.medicine__list--second {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-column-gap: 42px;
+    grid-row-gap: 22px;
+}
+
+.medicine__item--second {
+    box-sizing: border-box;
+    width: 100px;
+    height: 128px;
+}
+
+.medicine__item--second.item-is-full {
+    .medicine__file-del--second {
+        display: block;
+    }
+
+    .load-images__label.add-file--second {
+        display: none;
+    }
+
+    .load-images__label--second.load-input {
+        display: none;
+    }
+}
+
+.medicine__item--second.item-is-empty {
+    .medicine__file-del--second {
+        display: none;
+    }
+
+    .load-images__label--second.add-file--second {
+        display: block;
+    }
+
+    .load-images__label--second.load-input {
+        display: block;
+    }
+}
+
+.load-images__label--second.load-input.primary-btn {
+    min-width: auto;
+    width: 100px;
+    height: 120px;
+    // height: 100px;
+
+    &:hover {
+        box-shadow: none;
+    }
+}
+
+.medicine__item-add--second {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #c5c6c9;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+
+    svg {
+        width: 32px;
+        height: 32px;
+
+        path {
+            fill: #d4d5d6;
+        }
+    }
+}
+
+.medicine__item-title {
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 700;
+    font-family: 'Montserrat-Bold';
+    color: #6a6a6a;
+}
+
+.medicine__item-title.block-uppercase {
+    text-transform: uppercase;
+}
+
+.medicine__file--second {
+    box-sizing: border-box;
+    padding: 6px;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #c5c6c9;
+    background-color: #ffffff;
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.medicine__file-del--second {
+    z-index: 200;
+    position: absolute;
+    width: 12px;
+    height: 11px;
+    top: 10px;
+    right: 10px;
+}
+
+.load-images__label--second {
+    background-color: transparent;
+    max-width: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+.load-images__input.manager-input {
+    display: block;
+    opacity: 0;
+}
+
+.medicine__file-add--second {
+    .load-images__label.add-file--second {
+        z-index: 300;
+        height: 14px;
+        width: 70px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        position: absolute;
+        font-size: 14px;
+        line-height: 100%;
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        color: #3c9bb8;
+        border-bottom: 1px solid #3c9bb8;
+    }
+
+    .load-images__label.addFile-is-active {
+        overflow-y: scroll;
+        top: 48px;
+        height: 90px;
+        width: 80px;
+        padding: 3px;
+        word-break: break-word;
+        text-align: center;
+        border-bottom: none;
+    }
+
+    .load-images__label.add-file--second.input-value-block {
+        position: relative;
+        top: 75px;
+        width: 86px;
+        height: 100px;
+        text-align: center;
+        padding: 4px;
+        word-wrap: break-word;
+        overflow-y: scroll;
+        display: block;
+    }
+}
+
+.load-images__label--second.load-input.primary-btn {
+    max-height: 120px;
+    padding: 0;
+    position: relative;
+    z-index: 200;
+}
+
+.medicine__file-add--second .load-images__label.add-file--second {
+    z-index: 100;
+}
+
+.input-value-block {
+    position: relative;
+    top: 75px;
+    width: 86px;
+    height: 100px;
+    text-align: center;
+    padding: 4px;
+    word-wrap: break-word;
+    overflow-y: scroll;
+    display: block;
+}
+
+.medicine__file--second,
+.medicine__item--second {
+    height: 135px;
+    margin-bottom: 30px;
+}
+
+.medicine__file--second {
+    height: 135px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.medicine__file--format {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    max-width: 38px;
+    width: 100%;
+    padding: 4px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 700;
+    font-family: 'Montserrat-Bold';
+    background-color: #aaaaaa;
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0;
+}
+
+.format-is-active {
+    opacity: 1;
+}
+
+.medicine__item-add--second {
+    margin-top: 28px;
+    height: 135px;
+}
+
+.load-images__label.add-file--second.input-value-block {
+    font-weight: 700;
+    font-family: 'Montserrat-Bold';
+    color: #6a6a6a;
+}
+
+.documents {
+    &__title {
+        font-size: 18px;
+        line-height: 28px;
+        font-weight: 700;
+        font-family: 'Montserrat-Bold';
+        color: #000000;
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 1400px) {
+    .user-case {
+
+        padding: 30px 0;
+        padding-left: 0;
+
+        &__primary {
+            max-width: 900px;
+        }
+
+        &__inner {
+            flex-direction: column;
+        }
+
+        &__block {
+            margin-bottom: 50px;
+            padding-left: 0;
+            margin-left: 0;
+            order: 0;
+
+            .add-case {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .add-case__link+.add-case__link {
+                margin-top: 0;
+                margin-left: 28px;
+            }
+        }
+
+        &__primary {
+            margin-bottom: 50px;
+            order: 1;
+
+            .type-message__text {
+                max-width: 96%;
+            }
+        }
+
+        &__secondary {
+            max-width: 900px;
+            margin-left: 0;
+            order: 2;
+            padding: 30px 24px 30px 24px;
+        }
+
+        .medicine--second {
+            margin-bottom: 50px;
+        }
+
+        .medicine__list {
+            grid-column-gap: 32px;
+        }
+
+        .medicine__list--second {
+            grid-column-gap: 32px;
+        }
+
+    }
+}
+
+@media(max-width: 1030px) {
+    .user-case {
+
+        &__secondary {
+            padding: 30px 6px;
+        }
+
+        .type-message__btn {
+            transform: translateY(-54px);
+        }
+    }
+}
+
+@media(max-width: 860px) {
+    .user-case {
+
+        &__primary {
+            .chat-item {
+                padding: 20px;
+            }
+        }
+
+        margin-bottom: 90px;
+
+        .add-el__title {
+            .add-el__subtitle {
+                max-width: max-content;
+                margin-right: auto;
+                margin-left: auto;
+                padding-right: 40px;
+            }
+
+            .add-el__subtitle:last-child {
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+@media(max-width: 576px) {
+    .user-case {
+        padding-bottom: 0;
+        margin-bottom: 90px;
+
+        .subscription-block {
+            padding: 16px 30px;
+
+            &__title {
+                font-size: 20px;
+                line-height: 40px;
+            }
+
+            &__price {
+                font-size: 20px;
+                line-height: 40px;
+            }
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+        }
+
+        &__control {
+            flex-direction: column;
+        }
+
+        &__btn {
+            margin-bottom: 16px;
+        }
+
+        .cases__control-download,
+        .cases__control-share {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    .user-case {
+        &__primary {
+            .chat-item {
+                padding: 20px 16px;
+            }
+        }
+
+        .type-message__btn {
+            transform: translateY(-20px);
+            margin-left: 88%;
+        }
+    }
+}

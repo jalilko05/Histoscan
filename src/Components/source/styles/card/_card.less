@@ -1,0 +1,134 @@
+.checkbox-wrapper {
+    margin: 36px 0 28px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s;
+    max-width: fit-content;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    font-family: 'Montserrat-Regular';
+    &:hover {
+        .checkbox-wrapper__text {
+            color: #007bff;
+        }
+    }
+
+    &__input {
+        -webkit-appearance: none;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .my-checkbox {
+        margin-right: 12px;
+        position: relative;
+        width: 26px;
+        height: 26px;
+        border: 2px solid #dbdbdb;
+        background-color: transparent;
+        border-radius: 5px;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        height: 12px;
+        background-color: #c76f8c;
+        display: none;
+    }
+
+    & input:checked~.my-checkbox .checkmark {
+        display: block;
+        background-color: #3c9bb8;
+    }
+
+    &__text {
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        color: #3c3c3c;
+        font-size: 16px;
+        line-height: 100%;
+    }
+}
+
+.card {
+    &__label {
+        display: block;
+        margin-bottom: 18px;
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &__input.card-number {
+        display: block;
+        font-weight: 400;
+        font-family: 'Montserrat-Regular';
+        font-size: 26px;
+        line-height: 100%;
+        color: #8f8f8f;
+        text-transform: uppercase;
+        box-sizing: border-box;
+        padding: 13px 18px;
+        border: 1px solid #c5c6c9;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        font-weight: 700;
+        font-family: 'Montserrat-Bold';
+        font-size: 24px;
+        line-height: 28px;
+        color: #000000;
+        margin-bottom: 60px;
+    }
+
+    &__btn {
+        margin-left: 0;
+    }
+
+}
+
+.card__inner-data.data-mounth,
+.card__inner-data.data-cvc {
+    display: inline-block;
+}
+
+.card__inner-data.data-mounth {
+    max-width: 196px;
+    width: 100%;
+    margin-right: 46px;
+
+    input {
+        max-width: 196px;
+        width: 100%;
+        margin-bottom: 0;
+    }
+}
+
+.card__inner-data.data-cvc {
+    max-width: 130px;
+    width: 100%;
+
+    input {
+        margin-bottom: 0;
+        max-width: 130px;
+        width: 100%;
+    }
+}
+
+@media(max-width: 400px) {
+    .card__inner-data.data-cvc {
+        display: block;
+        margin-top: 14px;
+    }
+    .card__input.card-number {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,32 @@
+.footer {
+    padding: 38px 0 146px 0;
+    background-color: #a6a8ab;
+
+    &__inner {
+        display: flex;
+    }
+}
+
+@media(max-width: 1400px){
+    .footer{
+        padding-bottom: 90px;
+    }
+}
+
+@media(max-width: 1290px) {
+    .footer {
+        &__inner {
+            flex-direction: column;
+        }
+
+        .navigation {
+            margin-left: 0;
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    .footer{
+        padding: 38px 0 80px;
+    }
+}

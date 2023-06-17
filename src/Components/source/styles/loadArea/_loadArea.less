@@ -1,0 +1,284 @@
+// loadArea
+
+.note {
+    width: 500px;
+    margin: 50px auto;
+    font-size: 1.1em;
+    color: #333;
+    text-align: justify;
+}
+
+#drop-area {
+    box-sizing: border-box;
+    border: none;
+    background-color: #ffffff;
+    padding: 70px 68px 45px;
+    width: 812px;
+    min-height: 520px;
+    margin: 50px auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 500;
+}
+
+.drop-area {
+    display: none;
+}
+
+.drop-area__btn {
+    margin-top: 35px;
+}
+
+.drop-area--active {
+    display: block;
+}
+
+.drop-body--active {
+    // overflow: hidden;
+    position: relative;
+
+    &::after {
+        opacity: 0.75;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        position: absolute;
+        content: "";
+        z-index: 400;
+        width: 100%;
+        height: 100%;
+        background-color: #8f9091;
+    }
+}
+
+#drop-area.highlight {
+    border-color: purple;
+}
+
+p {
+    margin-top: 0;
+}
+
+.my-form {
+    text-align: center;
+    border: 1px solid #b9b9b9;
+    background-color: #f4f4f4;
+    max-width: 670px;
+    width: 100%;
+    min-height: 318px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.my-form__text {
+    margin-top: 70px;
+    font-size: 26px;
+    line-height: 28px;
+    font-weight: 400;
+    font-family: 'Montserrat-Regular';
+    color: #000000;
+}
+
+.my-form__smallText {
+    font-size: 18px;
+    line-height: 28px;
+    color: #000000;
+    font-weight: 400;
+    font-family: 'Montserrat-Regular';
+    margin-bottom: 40px;
+}
+
+.my-form__pickFile {
+    box-sizing: border-box;
+    max-width: 360px;
+    width: 100%;
+    padding: 14px 32px;
+    color: #ffffff;
+    background-color: #767676;
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: 700;
+    font-family: 'Montserrat-Bold';
+}
+
+#gallery {
+    margin-top: 10px;
+}
+
+#gallery img {
+    width: 150px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #ddd;
+}
+
+#fileElem {
+    display: none;
+}
+
+@media(max-width: 1500px) {
+    #drop-area {
+        padding: 50px 20px 20px;
+        width: 620px;
+        min-height: 323px;
+    }
+
+    .my-form {
+        max-width: 500px;
+        min-height: 240px;
+    }
+
+    .my-form__text {
+        margin-top: 30px;
+    }
+
+    .my-form__smallText {
+        margin-bottom: 20px;
+    }
+
+    .drop-area__btn {
+        margin-top: 20px;
+    }
+}
+
+@media(max-width: 1200px) {
+    #drop-area {
+        padding: 20px;
+        width: 560px;
+    }
+
+    .my-form {
+        max-width: 450px;
+        min-height: 200px;
+    }
+
+    .my-form__text {
+        margin-top: 20px;
+        font-size: 22px;
+        line-height: 24px;
+    }
+
+    .my-form__pickFile {
+        font-size: 16px;
+        line-height: 32px;
+    }
+
+    .my-form__smallText {
+        font-size: 16px;
+        line-height: 26px;
+    }
+}
+
+@media(max-width: 768px) {
+    #drop-area {
+        width: 470px;
+        min-height: 300px;
+    }
+
+    .my-form {
+        max-width: 390px;
+        min-height: 190px;
+    }
+}
+
+@media(max-width: 620px) {
+    #drop-area {
+        width: 400px;
+        min-height: 270px
+    }
+
+    .my-form__pickFile {
+        font-size: 16px;
+        line-height: 20px;
+        max-width: 320px;
+        padding: 9px 22px;
+    }
+
+    .my-form {
+        max-width: 360px;
+        min-height: 154px;
+    }
+
+    .my-form__text {
+        margin-top: 16px;
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    .my-form__smallText {
+        margin-bottom: 10px;
+    }
+    
+    .drop-area__btn {
+        margin-top: 14px;
+    }
+}
+
+@media(max-width: 500px) {
+    #drop-area {
+        width: 360px;
+        min-height: 258px;
+    }
+
+    .my-form {
+        max-width: 310px;
+        min-height: 140px;
+    }
+
+    .my-form__pickFile {
+        font-size: 16px;
+        line-height: 18px;
+        max-width: 240px;
+        padding: 9px 6px;
+    }
+
+    .my-form__text {
+        margin-bottom: 2px;
+    }
+}
+
+@media(max-width: 400px) {
+    #drop-area {
+        width: 280px;
+        min-height: 248px;
+        padding: 10px;
+    }
+
+    .my-form__pickFile {
+        font-size: 14px;
+        line-height: 16px;
+        max-width: 190px;
+    }
+
+    .my-form__text {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .my-form {
+        min-height: 130px;
+    }
+
+    .my-form__text {
+
+    }
+
+    .my-form__smallText {
+
+    }
+
+    .drop-area__btn {
+
+    }
+}

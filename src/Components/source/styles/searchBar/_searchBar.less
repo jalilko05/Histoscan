@@ -1,0 +1,53 @@
+.search-bar {
+    margin-bottom: 104px;
+    border-bottom: 1px solid #b5b5b5;
+    padding-bottom: 20px;
+
+    &__input {
+        box-sizing: border-box;
+        width: 100%;
+        font-size: 30px;
+        line-height: 100%;
+        font-weight: 300;
+        font-family: 'Montserrat-Light';
+        color: #7f7f7f;
+        background-color: transparent;
+        border: none;
+
+        &::placeholder {
+            background-color: transparent;
+            font-size: 30px;
+            line-height: 100%;
+            font-weight: 300;
+            font-family: 'Montserrat-Light';
+            color: #7f7f7f;
+        }
+    }
+}
+
+@media(max-width: 1400px) {
+    .user-case{
+        .search-bar {
+            margin-bottom: 26px;
+        }
+    }
+}
+
+@media(max-width: 670px){
+    .user-case{
+        .add-el__subtitle{
+            margin-bottom: 16px;
+        }
+        .add-el__subtitle::after {
+            top: 50%;
+            right: 0;
+            left: auto;
+        }
+    }
+}
+
+// @media(max-width: 640px){
+//     .search-bar{
+//         margin-bottom: 80px;
+//     }
+// }
