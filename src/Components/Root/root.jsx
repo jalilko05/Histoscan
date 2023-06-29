@@ -9,6 +9,7 @@ import CaseOne from "../Cases/CaseIt/mycaseone"
 import CaseDetail from "../Cases/CaseIt/mycasetwelve"
 import CaseImage from "../Cases/CaseIt/caseimage"
 import Reset from '../Login/Reset.jsx'
+import NewWord from "../Login/NewWord"
 function Root(){
     return(
         <>
@@ -22,10 +23,9 @@ function Root(){
                 <Route path="/CaseOne" element={<CaseOne/>}/>
                 <Route path="/Reset" element={<Reset/>}/>
                 <Route path="/case/:id" element={<CaseDetail/>}/>
+                <Route path="/newWord" element={<NewWord/>}/>
             </Route>
             <Route path="/image/:id" element={<CaseImage/>} />
-
-    
           </Routes>
         </>
     )

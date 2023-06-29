@@ -22,7 +22,7 @@ function CaseOne(){
 
  
  useEffect(() => {
-  fetch( url + "case/GetAvailableCasesList")
+  fetch( url + "case/GetAvailableCasesList?skip=0&limit=30")
   .then(response => {
       return response.json();   
   })
@@ -241,7 +241,6 @@ const getTabContent = (tabName) => {
       return(
         <div>
          <div> 
-        
          {info.data && info.data.map((value) => {  
         return( 
             <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.case_number}>
@@ -267,10 +266,38 @@ const getTabContent = (tabName) => {
                 </div>
                 </div>          
              </div>
-                           );       
+                    );   
            })}
            </div>
-         
+           <div>
+          {available.map((value)=>{
+            return(
+            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.id}>
+              <div className="user-case__description">
+              <div className="cases__info" >
+              <div className="cases__name cases__el">
+                     Случай №:
+                     <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.case_number}</span>
+                 </div>
+                 <div className="cases__name cases__el">
+                     фио:
+                     <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
+                 </div>    
+                 <div className="cases__localization data-localization cases__el">
+                     Локализация:
+                     <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
+                 </div>
+                 <div className="cases__description data-description cases__el">
+                     Описание:
+                     <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
+                 </div>
+                 <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+             </div>
+             </div>          
+          </div>
+            )
+          })}
+      </div>
            <div>
         {archi.map((value)=>{
           return(
@@ -314,8 +341,6 @@ const getTabContent = (tabName) => {
       return null;
   }
 };
-
- 
 
    return(
       <>

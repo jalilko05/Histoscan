@@ -296,16 +296,22 @@ const handleCheckboxChange = (userId) => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
-
-
-
-  fetch( url + `case/SetAccess?case_id=${id}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(selectedUsers),
-  })
+  if(selectedUsers.length == 0){
+    alert('Выберите пользователя')
+  } 
+  else(
+    fetch( url + `case/SetAccess?case_id=${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selectedUsers),
+    })
+    .then(function(res){
+      alert('Доступ к случаю успешно изменен')
+      setSelectedUsers([])
+    })
+  )
 };
 ////////////////////////////////////////////////////////////////////
 //Отправить в архив
@@ -326,7 +332,7 @@ function SendArch(e){
   })
   .then(response => {
     if (response.ok) {
-      console.log('Данные успешно отправлены на бэкенд!');
+     alert('Случай успешно отправлен в архив!')
     } else {
       console.error('Ошибка при отправке данных на бэкенд');
     }

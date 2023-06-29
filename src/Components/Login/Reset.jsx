@@ -9,12 +9,14 @@ function Reset(){
     const navigate = useNavigate()
     const [info, setInfo] = useState('')
 
+    
+
     const handleClick = () => {
       window.scrollTo(0, 0);
     };
 
     const [formData, setFormData] = useState({
-        username: "",
+        email: "",
       });
     
       function handleInputChange(event) {
@@ -23,23 +25,25 @@ function Reset(){
           [event.target.name]: event.target.value,
         });
       }
-    
+     
+
       function Send(event) {
         event.preventDefault();
-        const params = new FormData();
-        params.set('username', formData.username);
-
-    
-        fetch( url + 'user/PasswordClear', {
+  
+        fetch( url + `user/ClearPassword/${formData.email}`, {
           method: 'POST',
-          body: params
+          headers: {
+            'Content-Type': 'aplication/json',
+          },
+          body: JSON.stringify(formData)
+
         }).then(function (response) {
           if (response.ok === false) {
             setInfo('Такой email не зарегистрирован');
             return;
           }
           if (response.ok === true) {
-             navigate('/caseOne');
+             navigate('/newWord');
           }
         })
         .catch((error) => {
@@ -47,7 +51,7 @@ function Reset(){
         });
       }
     return(
-        <>
+        <>  
         <div className="main-content">
             <div className="container-primary">
                 <div className="loginPrimary">
@@ -58,12 +62,11 @@ function Reset(){
                                 <label className="card__label"> Почта </label>
                                 <label className="card__label">{info}</label>
                                 <input
-                                 value={formData.username}
+                                 value={formData.email}
                                  onChange={handleInputChange}
-                                required type="email" name="username" placeholder="name@domain.com" id="email"
+                                required type="email" name="email" placeholder="name@domain.com" id="email"
                                 className="card__input card-tel loginPrimary__input card__auth-email"/>
                               <div style={{display: 'flex'}}> 
-                               <Link  to='/Reset' className="card__label"><h4>Зарегистрироваться</h4></Link>
                               </div>
                             </div>
                             <button className="primary-btn" id="login-btn"> Сбросить </button>
