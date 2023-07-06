@@ -16,7 +16,6 @@ function Root(){
          <Routes>
             <Route  element={<Layout/>}>
                 <Route path="/" element={<Main/>}/>
-                <Route  path="/subscription" element={<Subscription/>}/>
                 <Route path="/subscription/subscriptionSettingOneMounth" element={<SubscriptionSettingoneMounth/>}/>
                 <Route path="/loginPage" element={<LoginPage/>}/>
                 <Route path="/addCase" element={<AddCase/>}/>

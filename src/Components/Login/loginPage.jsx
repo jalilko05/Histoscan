@@ -34,6 +34,10 @@ function LoginPage(){
           method: 'POST',
           body: params
         }).then(function (response) {
+          if (response.status >= 500) {
+            alert('Ошибка сервера')
+            return;
+          }
           if (response.ok === false) {
             setInfo('Введён неверный логин или пароль');
             return;
@@ -57,7 +61,7 @@ function LoginPage(){
                         <div className="card">
                             <div className="card__inner">
                                 <label className="card__label"> Почта </label>
-                                <label className="card__label">{info}</label>
+                                <label className="card__label">{info}</label> 
                                 <input
                                  value={formData.username}
                                  onChange={handleInputChange}

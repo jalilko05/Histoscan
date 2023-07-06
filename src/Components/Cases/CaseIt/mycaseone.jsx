@@ -94,6 +94,14 @@ const handleTabClick = (tabName) => {
       body: JSON.stringify(data),
     })
       .then(response => { 
+        if (response.status >= 500) {
+          alert('Ошибка сервера')
+          return;
+        }
+        if (response.status === 422) {
+          alert('Заполните поле корректно!')
+          return;
+        }
         return fetch(url + `user/GetSelf`)
         .then(response => {
                 return response.json();   
@@ -128,8 +136,8 @@ const handleTabClick = (tabName) => {
     fetch( url + "case/GetList")
     .then(response => {
       if (response.status === 401) {
-       
       }
+      
       return response.json();
     })
       .then((data => setInfo(data)))
@@ -137,6 +145,7 @@ const handleTabClick = (tabName) => {
 }, []);
 
 //////////////////////////////////////////////////////////////////////
+
 const getTabContent = (tabName) => {
   switch (tabName) {
     case 'tab1':
@@ -191,7 +200,7 @@ const getTabContent = (tabName) => {
                      Описание:
                      <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
                  </div>
-                 <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                 <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
              </div>
              </div>          
           </div>
@@ -262,7 +271,7 @@ const getTabContent = (tabName) => {
                         Описание:
                         <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
                     </div>
-                    <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                    <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
                 </div>
                 </div>          
              </div>
@@ -291,7 +300,7 @@ const getTabContent = (tabName) => {
                      Описание:
                      <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
                  </div>
-                 <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                 <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
              </div>
              </div>          
           </div>
