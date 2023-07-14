@@ -63,7 +63,7 @@ function NewWord(){
     //   }
     const [formData, setFormData] = useState({});
 
-    const DOMAIN = "http://localhost/api";
+    const DOMAIN = url;
 
   const fisher = {
   async fetch(path, options = {}, method) {

@@ -50,9 +50,13 @@ function AddCase(){
                 if (response.status === 422) {
                   setText('Заполните поля корректно')
                 }
-                if (response.status === 401) {
+                else if (response.status === 401) {
                     alert('Вы не авторизованы')
                     navigate('/loginPage')
+                  }
+                else if(response.status >= 500) {
+                  alert('Ошибка сервера')
+                return;
                   }
                 if (response.status === 201) {
                   navigate('/CaseOne');
@@ -79,25 +83,26 @@ function AddCase(){
                                         <label className="card__label"> Локализация </label>
                                         <input
                                         maxLength="200"
-                                         value={formData.localization}
-                                         onChange={handleInputChange}
+                                        value={formData.localization}
+                                        onChange={handleInputChange}
                                         required
-                                        type="text"
                                         placeholder="Абв"
                                         name="localization"
                                         className="card__input card-pass"/> 
                                         <label className="card__label">Номер случая</label>
-                                        <input   className="card__input card-pass" type="text" name="case_number" required value={formData.case_number} onChange={handleInputChange} />
+                                        <input  maxLength="100"
+                                        className="card__input card-pass" type="text" name="case_number" required value={formData.case_number} onChange={handleInputChange} />
 
                                         <label className="card__label">Название организации</label>
-                                        <input   className="card__input card-pass" type="text" name="organization_name" required value={formData.organization_name} onChange={handleInputChange} />
+                                        <input      maxLength="200"
+                                          className="card__input card-pass" type="text" name="organization_name" required value={formData.organization_name} onChange={handleInputChange} />
             
                                         <label className="card__label"> <span className="card__label-info">фио</span> пациента
                                         </label>
                                         <input
                                         maxLength="100"
-                                                 value={formData.patient_fullname}
-                                                 onChange={handleInputChange}
+                                        value={formData.patient_fullname}
+                                        onChange={handleInputChange}
                                         required type="text"
                                         placeholder="Абв"
                                         name="patient_fullname"

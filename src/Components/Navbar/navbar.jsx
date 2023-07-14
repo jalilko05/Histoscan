@@ -7,14 +7,14 @@ import Study from '../assets/images/icons/study-icon.png'
 import Part from '../assets/images/icons/partners-icon.png'
 import Contact from '../assets/images/icons/contact-icon.png'
 import { NavLink, useNavigate } from "react-router-dom";
-
+import { url } from "../url";
 function Navbar(){
 
 const navigate = useNavigate()
 
 
 function Out(){
-    fetch('http://localhost/api/user/SignOut')  
+    fetch(`http://localhost/api/user/SignOut`)  
     navigate('/loginPage')
 }
 

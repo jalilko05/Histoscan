@@ -179,8 +179,6 @@ import React, { useState, useEffect, useRef } from "react";
 import OpenSeadragon from "openseadragon";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { url } from "../../url";
-// import { Annotorious } from '@recogito/annotorious';
-// import '@recogito/annotorious/dist/annotorious.min.css';
 import { payKey } from './store';
 
 function CaseImage() {
@@ -190,6 +188,94 @@ function CaseImage() {
   const [imageSize, setImageSize] = useState({ height: 10, width: 10 });
   const [material, setMaterial] = useState([]);
 
+
+  const [startPoint, setStartPoint] = useState(null);
+  const [endPoint, setEndPoint] = useState(null);
+  const [areaResult, setAreaResult] = useState(null);
+  const [center, setCenter] = useState(null);
+  const [radius, setRadius] = useState(null);
+  
+  const handleSelectArea = () => {
+    // Сохраняем исходное значение перемещения
+    const mouseNavEnabled = viewerRef.current.isMouseNavEnabled();
+  
+    // Отключаем перемещение слайда
+    viewerRef.current.setMouseNavEnabled(false);
+  
+    // Сохраняем исходные значения масштабирования
+    const zoomPerClick = viewerRef.current.zoomPerClick;
+    const zoomPerScroll = viewerRef.current.zoomPerScroll;
+  
+    // Отключаем функцию зума
+    viewerRef.current.zoomPerClick = 0;
+    viewerRef.current.zoomPerScroll = 0;
+  
+    viewerRef.current.addHandler("canvas-click", handleCanvasClick);
+  
+    // После завершения выделения области
+    const restoreZoomAndPan = () => {
+      // Восстанавливаем значения масштабирования
+      viewerRef.current.zoomPerClick = zoomPerClick;
+      viewerRef.current.zoomPerScroll = zoomPerScroll;
+  
+      // Восстанавливаем перемещение слайда
+      viewerRef.current.setMouseNavEnabled(mouseNavEnabled);
+    };
+  
+    // Устанавливаем обработчик на событие изменения положения области выделения
+    viewerRef.current.addHandler("selection-change", () => {
+      if (!viewerRef.current.isMouseNavEnabled()) {
+        viewerRef.current.setMouseNavEnabled(true);
+        restoreZoomAndPan();
+        viewerRef.current.removeHandler("selection-change", restoreZoomAndPan);
+      }
+    });
+  };
+
+  const handleCanvasClick = (event) => {
+    const viewer = viewerRef.current;
+  
+    // Получаем координаты клика
+    const position = viewer.viewport.pointFromPixel(event.position);
+  
+    if (!center) {
+      // Устанавливаем центр выделенной области
+      setCenter(position);
+    } else if (!radius) {
+      // Устанавливаем радиус выделенной области
+      const distanceX = Math.abs(position.x - center.x);
+      const distanceY = Math.abs(position.y - center.y);
+      const radius = Math.max(distanceX, distanceY);
+      setRadius(radius);
+    }
+  };
+  const calculateArea = () => {
+    if (!startPoint || !endPoint) {
+      return; // Если startPoint или endPoint отсутствуют, выходим из функции
+    }
+  
+    const viewer = viewerRef.current;
+  
+    // Получаем коэффициент масштабирования
+    const zoom = viewer.viewport.getZoom(true);
+  
+    // Вычисляем размеры выделенной области
+    const startX = startPoint.x / zoom;
+    const startY = startPoint.y / zoom;
+    const endX = endPoint.x / zoom;
+    const endY = endPoint.y / zoom;
+    const width = Math.abs(endX - startX);
+    const height = Math.abs(endY - startY);
+  
+    // Вычисляем площадь
+    const area = width * height;
+  
+    // Установите результат в состояние
+    setAreaResult(area);
+  };
+
+
+  console.log(areaResult)
   useEffect(() => {
     fetch(url + `case/GetCaseInfo/?case_id=${payKey.data}`)
       .then((response) => response.json())
@@ -197,6 +283,7 @@ function CaseImage() {
         if (data && data.data) {
           setMaterial(data.data.slides);
         }
+        
       });
   }, []);
 
@@ -210,6 +297,10 @@ function CaseImage() {
         if (response.status === 401) {
           alert("Вы не авторизованы");
           navigate("/loginPage");
+        }
+        else if(response.status >= 500) {
+          alert('Ошибка сервера')
+          return;
         }
 
         const result = await response.json();
@@ -292,8 +383,10 @@ function CaseImage() {
               }
             }}
           >
+                 
             <img src="https://img.icons8.com/small/32/null/rotate-left.png" />
           </button>
+      
           <button
             onClick={() => {
               if (viewerRef.current) {
@@ -317,6 +410,7 @@ function CaseImage() {
             <img src="https://img.icons8.com/small/32/null/home.png" />
           </Link>
         </button>
+        <button onClick={handleSelectArea}>Выделить область</button>
       </div>
 
       <div
@@ -325,7 +419,7 @@ function CaseImage() {
         ref={viewerRef}
         style={{ height: "100vh", width: "100%" }}
       ></div>
-
+ 
       <div className="panelWrapper">
         <div className="Panel2">
           {material &&
@@ -344,6 +438,7 @@ function CaseImage() {
                 </div>
               </li>
             ))}
+             <p>Площадь: {areaResult}</p>
         </div>
       </div>
     </div>

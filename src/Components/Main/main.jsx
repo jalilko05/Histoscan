@@ -22,6 +22,10 @@ function Main(){
       if (response.status === 401) {
         navigate('/loginPage')
       }
+      else if(response.status >= 500) {
+        alert('Ошибка сервера')
+        return;
+      }
       else(
         navigate('/CaseOne')
       )
@@ -30,6 +34,7 @@ function Main(){
       
       .catch((error) => console.error(error));
     }
+    
     return(
         <>
         <div className="main-content">

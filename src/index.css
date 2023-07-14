@@ -36,6 +36,19 @@
     box-sizing: inherit;
   }
 
+  ::-webkit-scrollbar {
+    width: 10px; 
+    height: 8px; 
+    background-color: var(--content);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 9em;
+    border: 2px solid white;
+    box-shadow: inset 1px 1px 10px gray;
+  }
+
   .changeInp{
     display: flex;
     flex-direction: column;
@@ -84,24 +97,24 @@
 .caseH{
   display: flex;
   justify-content: space-evenly;
-  height: 600px;
+  height: fit-content;
   flex-direction: column;
   margin-bottom: 100px;
+  overflow: hidden;
 }
 
 .caseH h2{
- font-size: 45px;
- text-decoration: underline;
+ font-size: 25px;
 }
 
 .caseH p{
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 500;
  
 }
 .caseH span{
   font-weight: 600;
-  text-decoration: underline;
+ margin-left: 5px;
 }
 .cont{
   display: flex;  

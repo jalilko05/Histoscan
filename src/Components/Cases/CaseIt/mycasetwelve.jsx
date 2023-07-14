@@ -12,6 +12,7 @@ const CaseDetail = () => {
   const [caseData, setCaseData] = useState(0);
   const [material, setMaterial] = useState([]);
   const [doc, setDoc] = useState([])
+  const [email, setEmail] = useState(null)
   const [isPostSuccess, setIsPostSuccess] = useState(false);
 /////////////////////////////////////////////////////////////////
   useEffect(()=>{
@@ -57,8 +58,7 @@ const handleTabClick = (tabName) => {
     fetch(url + `case/GetCaseInfo?case_id=${id}`)
     .then(response => {
       if (response.status === 401) {
-        alert('Вы не авторизованы')
-        navigate('/loginPage')
+       
       }
       return response.json();
       })
@@ -142,6 +142,25 @@ useEffect(()=>{
   .then(data => setUserList(data))
 },[])
 
+const filteredUsers = userList.filter(user => user.email !== email);
+
+//////////////////////////////////////////////////////////////////////
+///GetSelf
+
+useEffect(() => {
+  fetch( url + "user/GetSelf")
+  .then(response => {
+    if(response.status >= 500) {
+      alert('Ошибка сервера')
+      return;
+    }
+      return response.json();   
+  })
+    .then((data) => setEmail(data.data.email))                    
+    .catch((error) => console.error(error));
+}, []);
+
+
 //////////////////////////////////////////////////////////////////////
 ///POST слайдов
   const handleFileChange = (event) => {
@@ -178,8 +197,15 @@ useEffect(()=>{
     });
   
     xhr.onload = () => {
-      if (xhr.status === 200) {
-       
+      if (xhr.status === 422) {
+        alert("Данный формат не поддерживается или не является слайдом");
+        setProgress(0);
+        setDescription1("");
+        setFileName("");
+        setText("");
+        setFile(null);
+        setProgress(0);
+        setResearch('')
       } 
       else if (xhr.status === 401) {
         alert("Вы не авторизованы");
@@ -248,7 +274,12 @@ const handleSubmit2= async (event) => {
 
 
   xhr.onload = () => {
-    if (xhr.status === 200) { 
+    if (xhr.status === 422) {
+      alert('Данный формат не поддерживается') 
+      setDescription2("");
+      setFileName2("");
+      setText2("");
+      setFile2(null);
     } 
     else if (xhr.status === 401) {
       alert("Вы не авторизованы");
@@ -334,7 +365,7 @@ function SendArch(e){
     if (response.ok) {
      alert('Случай успешно отправлен в архив!')
     } else {
-      console.error('Ошибка при отправке данных на бэкенд');
+      console.error('Ошибка при отправке данных на сервер');
     }
   })
   .catch(error => {
@@ -343,6 +374,8 @@ function SendArch(e){
 }
 ///////////////////////////////////////////////////////////////////
 //Вкладки
+
+
 const getTabContent = (tabName) => {
   switch (tabName) {
     case 'tab1':
@@ -351,27 +384,27 @@ const getTabContent = (tabName) => {
                   <form className="case-load"  onSubmit={handleSubmit}>
                                     <div style={{width:'300px'}} className="case-load__file">
                                         <div style={{height: '200px', display: 'block'}} className="medicine__file">                   
-                                            <label  className="load-images__label load-input">
-                                                <input  style={{height: '200px',cursor: 'pointer'}}  accept=".svs"
+                                           
+                                            <div className="medicine__file-add">
+                                                <label className="load-images__label add-file  ">
+                                                    Добавить файл
+                                                    <input disabled={caseData.status === 'в архиве'? true : false}  style={{height: '200px',cursor: 'pointer'}}  accept=".svs"
                                                    id="file"
-                                                    className="load-images__input manager-input file-input" multiple
+                                                    className="load-images__input  file-input" multiple
                                                     type="file"
                                                     onChange={handleFileChange}
-                                                     name="file"/>
-                                            </label>
-                                            <div className="medicine__file-add">
-                                                <label className="load-images__label add-file">
-                                                    Добавить файл
+                                                     name="file" placeholder=""/>
                                                 </label>
+                                                
                                             </div>
                                          
                                         </div>
                                         <p>Файл: {text}</p>
                                         <p>{progress == 0 ? '' : 'Прогресс: ' + progress + '%' }</p>
-                                        <button className="primary-btn btn-form-first" style={{marginTop: '40px', width: '200px'}}> Отправить </button>
+                                        <button disabled={caseData.status === 'в архиве'? true : false} className="primary-btn btn-form-first" style={{marginTop: '40px', width: '200px'}}> Отправить </button>
                                     </div>
                                     <div className="case-load__text">
-                                        <input
+                                        <input disabled={caseData.status === 'в архиве'? true : false}
                                         className="case-load__title"
                                         maxLength="50"
                                         value={filename}
@@ -380,17 +413,17 @@ const getTabContent = (tabName) => {
                                         onChange={handleFileNameChange}       
                                         placeholder="Введите название файла"></input>
 
-                                        <textarea
+                                        <textarea disabled={caseData.status === 'в архиве'? true : false}
                                         onChange={handleDescriptionChange}
                                         value={description1}
-                                        maxLength="1000"
+                                        maxLength="900"
                                         id="load-title"
                                         style={{height: '230px'}}
                                         name="description"
                                         className="case-load__description"
                                         placeholder="Введите описание файла">
                                         </textarea>
-                                        <textarea onChange={handleResearchCnahge} value={research}   maxLength="1000"    
+                                        <textarea   maxLength="90" disabled={caseData.status === 'в архиве'? true : false} onChange={handleResearchCnahge} value={research}      
                                         name="description"
                                         className="case-load__description"
                                         placeholder="Исследования">
@@ -405,17 +438,16 @@ const getTabContent = (tabName) => {
                   <form className="case-load"  onSubmit={handleSubmit2}>
                                     <div style={{width:'300px'}} className="case-load__file">
                                         <div style={{height: '200px', display: 'block'}} className="medicine__file">                   
-                                            <label  className="load-images__label load-input">
-                                                <input  style={{height: '200px',cursor: 'pointer'}}  accept=".jpg, .pdf, .doc"  
-                                                   id="file"
-                                                    className="load-images__input manager-input file-input" multiple
-                                                    type="file"
-                                                    onChange={handleFileChange2}
-                                                    name="file"/>
-                                            </label>
+
                                             <div className="medicine__file-add">
                                                 <label className="load-images__label add-file">
                                                     Добавить документ
+                                                    <input  style={{height: '200px',cursor: 'pointer'}}  accept=".jpg, .pdf, .doc"  
+                                                   id="file"
+                                                    className="load-images__input  file-input" multiple
+                                                    type="file"
+                                                    onChange={handleFileChange2}
+                                                    name="file"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -435,7 +467,7 @@ const getTabContent = (tabName) => {
                                         <textarea
                                         onChange={handleDescriptionChange2}
                                         value={description2}
-                                        maxLength="1000"
+                                        maxLength="900"
                                         id="load-title"
                                         style={{height: '230px'}}
                                         name="description"
@@ -446,11 +478,11 @@ const getTabContent = (tabName) => {
                    </form> 
            </div>
       );
-    case 'tab3' : 
+    case 'tab3': 
       return(
       <div style={{border: '1px solid black', padding: '20px'}}>
             <div  style={{width: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
-              {userList.map((value)=>{
+              {filteredUsers && filteredUsers.map((value)=>{
                 return(
                       <div key={value.id} style={{border: '1px solid black', display: 'flex', justifyContent: 'space-between', margin:'10px 0', padding: '10px', alignItems: 'center'}}>
                         <p style={{margin: '1px'}}> <span>{value.last_name}</span> <span>{value.first_name}</span> <span>{value.middle_name}</span> </p>
@@ -473,9 +505,10 @@ const getTabContent = (tabName) => {
       )
       case 'tab4':
        return(
-        <div style={{border: '1px solid black', padding: '20px'}}>
+        <div style={{ border: '1px solid black', padding: '20px'}} >
         <div  style={{width: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
-            <button onClick={SendArch} style={{width: '300px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Отправить случай в архив</button>
+          {/* {caseData.status === 'в работе' ? <p>У вас нет доступа</p> :  */}
+          <button onClick={SendArch} style={{width: '300px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Отправить случай в архив</button>
          </div>
         </div>
        )
@@ -492,7 +525,7 @@ const getTabContent = (tabName) => {
       <div className="container-primary">
         <div className="cont">
           <div className="caseDetail">
-            <div className="caseH">              
+            <div className="caseH" style={{width: '700px'}}>              
               <p className="cases__name cases__el"> Случай: {caseData?.case_number} </p> 
               <p className="cases__name cases__el">Имя пациента:{show ? <span> 
                 {caseData.patient_fullname}</span> :
@@ -540,28 +573,28 @@ const getTabContent = (tabName) => {
                     <div style={{display: 'flex', flexDirection:'column'}}>
                         <div style={{display: 'flex'}}>
                         <div className="tab" style={{marginRight: '10px'}}>
-                           <button
+                           <button 
                                className={`tab-btn ${activeTab === 'tab1' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab1')}>
                                Слайд
                              </button>
                            </div>
                            <div className="tab" style={{marginRight: '10px'}}>
-                             <button
+                             <button disabled={caseData.status === 'в архиве'? true : false}
                                className={`tab-btn ${activeTab === 'tab2' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab2')}>
                                Документы
                              </button>
                            </div>
                            <div className="tab" style={{marginRight: '10px'}}>
-                             <button
+                             <button disabled={caseData.status === 'в архиве'? true : false}
                                className={`tab-btn ${activeTab === 'tab2' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab3')}>
                                Поделиться
                              </button>
                            </div>
                            <div className="tab" style={{marginRight: '10px'}}>
-                             <button
+                             <button disabled={caseData.status === 'в архиве'? true : false}
                                className={`tab-btn ${activeTab === 'tab2' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab4')}>
                                В Архив
@@ -573,16 +606,22 @@ const getTabContent = (tabName) => {
                          </div>
                     </div>
            
-          </div>
+      </div>
 
           <div>
-            <h3 className="cases__name cases__el" style={{textDecoration: 'underline', fontSize:'20px', fontWeight:'600s'}}>Slide:</h3>
-             <ul style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'column',}}>
+            <h3 className="cases__name cases__el" style={{fontSize:'25px', fontWeight:'600s'}}>Слайды:</h3>
+             <ul style={{display: 'flex', flexWrap: 'wrap'}}>
               {material &&
                 material.map((value) => (
-                  <li key={value.id} style={{border: '1px solid black', height: '400px', margin: ' 30px 0', display:'flex', padding: '20px'}}>
+                  <li key={value.id} style={{
+                  border: '1px solid black',   
+                  display:'flex', 
+                  width:'460px',
+                  padding: '20px', 
+                  flexDirection: 'column',
+                  margin: '20px 50px 20px 0px'}}>
                   
-                   <div style={{overflow:'auto', width: '430px', height: '350px'}}>
+                   <div style={{overflow:'auto', width: '430px', height: '350px', marginBottom:'20px'}}>
                     <Link to={`/image/${value.id}`}>
                       <img
                         src={ url + `${value.label}`}
@@ -595,31 +634,38 @@ const getTabContent = (tabName) => {
                      </Link>
                
                    </div>
-                   <div style={{marginLeft: '30px'}}>
-                     <p className="cases__name cases__el"  style={{fontSize: '25px'}}>Название слайда: <span>{value.title}</span></p>
+                   <div style={{overflow: 'hidden'}}> 
+                     <p className="cases__name cases__el"> <span style={{fontSize: '25px', fontWeight:'600'}}> Название:</span> {value.description}</p>
+                     <span className="cases__name cases__el" style={{fontSize:'25px', overflow: 'auto',fontWeight:'600' }}>Описание:</span>
                       <div style={{overflow: 'auto', height: '300px'}}>
-                      <p className="cases__name cases__el"> <span style={{fontSize:'30px'}}>Описание:</span><span>{value.description ? value.description : 'Пусто'}</span></p>
+                      <p className="cases__name cases__el"> <span>{value.description ? value.description : 'Пусто'}</span></p>
                      </div>
                    </div>
-
                   </li>
                 ))}
             </ul>
            </div>   
 
           <div>
-            <h3 className="cases__name cases__el" style={{textDecoration: 'underline', fontSize:'20px', fontWeight:'600s'}}>Document:</h3>
-            <ul tyle={{display: 'flex', justifyContent: 'space-around', flexDirection: 'column',}}>
+            <h3 className="cases__name cases__el" style={{fontSize:'20px', fontWeight:'600s'}}>Document:</h3>
+            <ul style={{display: 'flex', flexWrap: 'wrap'}}>
               {doc &&
                 doc.map((value) => (
-                  <li className="desCont"  key={value.id} style={{border: '1px solid black', height: '400px', margin: ' 30px 0', display:'flex', padding: '20px'}}>
-                         <a style={{width: '400px', height: '350px', border: '1px solid black', background: '#3c9bb8', color:'white', fontFamily:'verdana'}} href={url + `${value.url}`} className="Atag"><span>Посмотреть документ</span></a>
-                         <div style={{marginLeft: '30px'}}>
-                         <p className="cases__name cases__el" style={{fontSize: '25px'}}>Название документа: <span>{value.title}</span></p>
-                           <div style={{overflow: 'auto', height: '300px'}}>
-                           <p className="cases__name cases__el"><span style={{fontSize:'30px'}}>Описание:</span> <span>{value.description ? value.description : `Пусто`}</span></p>
-                           </div>
-                         </div>
+                  <li className="desCont"  key={value.id} style={{ 
+                  border: '1px solid black',   
+                  display:'flex', 
+                  width:'460px',
+                  padding: '20px', 
+                  flexDirection: 'column',
+                  margin: '20px 50px 20px 0px'}}>
+                         <a style={{width: '400px', height: '350px', border: '1px solid black', marginBottom:'20px', background: '#3c9bb8', color:'white', fontFamily:'verdana'}} href={url + `${value.url}`} className="Atag"><span>Посмотреть документ</span></a>
+                      <div style={{overflow:'hidden'}}>
+                         <p className="cases__name cases__el"> <span style={{fontSize: '25px'}}>Название:</span> <span style={{fontSize: '16px'}}>{value.title}</span></p>
+                         <span  className="cases__name cases__el" style={{fontSize:'25px'}}>Описание:</span> 
+                          <div style={{overflow: 'auto', height: '300px'}}>
+                           <p className="cases__name cases__el"><span style={{fontSize: '16px'}}>{value.description ? value.description : `Пусто`}</span></p>
+                          </div>
+                      </div>
                   </li>
                 ))}
             </ul>

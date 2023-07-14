@@ -42,7 +42,11 @@ function Reset(){
             setInfo('Такой email не зарегистрирован');
             return;
           }
-          if (response.ok === true) {
+          else if(response.status >= 500) {
+            alert('Ошибка сервера')
+            return;
+          }
+          else if(response.ok === true) {
              navigate('/newWord');
           }
         })
