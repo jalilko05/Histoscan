@@ -411,7 +411,7 @@ const getTabContent = (tabName) => {
                                 </div>
                                 <div className="profi__info">
                                 {userData && (
-                                   <div>
+                                   <div>  
                                      <p  className="cases__name cases__el">Имя: {userData.first_name}</p>
                                      <p  className="cases__name cases__el">Отчество: {userData.middle_name}</p>
                                      <p  className="cases__name cases__el">Фамилия: {userData.last_name}</p>
@@ -421,7 +421,7 @@ const getTabContent = (tabName) => {
                                    </div>
                                   )}
                                   {showInput ?
-                      <div className="changeInp">
+                    <div className="changeInp">
                       <input
                         type="text"
                         placeholder="Имя"

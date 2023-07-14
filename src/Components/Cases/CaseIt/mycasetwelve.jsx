@@ -405,7 +405,7 @@ const getTabContent = (tabName) => {
                                     </div>
                                     <div className="case-load__text">
                                         <input disabled={caseData.status === 'в архиве'? true : false}
-                                        maxLength="10"
+                                        maxLength="50"
                                         className="case-load__title"
                                         value={filename}
                                         required
@@ -507,8 +507,8 @@ const getTabContent = (tabName) => {
        return(
         <div style={{ border: '1px solid black', padding: '20px'}} >
         <div  style={{width: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
-          {caseData.status === 'в работе' ? <p>У вас нет доступа</p> : 
-          <button onClick={SendArch} style={{width: '300px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Отправить случай в архив</button>}
+          {/* {caseData.status === 'в работе' ? <p>У вас нет доступа</p> :  */}
+          <button onClick={SendArch} style={{width: '300px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Отправить случай в архив</button>
          </div>
         </div>
        )
@@ -557,7 +557,7 @@ const getTabContent = (tabName) => {
               </div>
 
               {/* <p className="cases__name cases__el">Дата сдачи материала:{show ? <span>{caseData.created_at}</span> : <input type="text"/>} </p> */}
-            <div style={{display: 'flex', fontSize:'5px'}}>
+              {caseData.status === 'в архиве' ? '' :   <div style={{display: 'flex', fontSize:'5px'}}>
             <p style={{textDecoration: 'none',  fontSize:'18px', cursor: 'pointer'}} onClick={ChangeFirst}>{show? 'Изменить' :''}</p> 
             {show ? '' : 
            <div style={{display: 'flex', fontSize:'5px'}}>
@@ -567,12 +567,12 @@ const getTabContent = (tabName) => {
             
            </div>
            } 
-            </div>
+            </div>}
             </div>
 
                     <div style={{display: 'flex', flexDirection:'column'}}>
                         <div style={{display: 'flex'}}>
-                        <div className="tab" style={{marginRight: '10px'}}>
+                         <div className="tab" style={{marginRight: '10px'}}>
                            <button 
                                className={`tab-btn ${activeTab === 'tab1' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab1')}>
@@ -601,13 +601,38 @@ const getTabContent = (tabName) => {
                              </button>
                            </div>
                         </div>
-                           <div className="tab-content">
+                          {
+                            caseData.status === 'в архиве' ?
+                            
+                            <div style={{border: '1px solid black', padding: '20px'}}>
+                            <div  style={{width: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
+                              {filteredUsers && filteredUsers.map((value)=>{
+                                return(
+                                      <div key={value.id} style={{border: '1px solid black', display: 'flex', justifyContent: 'space-between', margin:'10px 0', padding: '10px', alignItems: 'center'}}>
+                                        <p style={{margin: '1px'}}> <span>{value.last_name}</span> <span>{value.first_name}</span> <span>{value.middle_name}</span> </p>
+                                        <input
+                                          style={{transform:'scale(2)', cursor: 'pointer'}}
+                                          type="checkbox"
+                                          value={value.id}
+                                          checked={selectedUsers.includes(value.id)}
+                                          onChange={() => handleCheckboxChange(value.id)}
+                                        />
+                                      </div>         
+                                )
+                              })}
+                            </div>
+                            <div style={{height: '10px', padding: '10px', display: 'flex', justifyContent: 'space-between', margin: '20px 0'}}>
+                              <button></button>
+                              <button onClick={handleFormSubmit} style={{width: '200px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Поделиться</button>
+                             </div>
+                        </div> : 
+
+                          <div className="tab-content">
                             {getTabContent(activeTab)}
                          </div>
+                          }
                     </div>
-           
-      </div>
-
+         </div> 
           <div>
             <h3 className="cases__name cases__el" style={{fontSize:'25px', fontWeight:'600s'}}>Слайды:</h3>
              <ul style={{display: 'flex', flexWrap: 'wrap'}}>
@@ -616,28 +641,27 @@ const getTabContent = (tabName) => {
                   <li key={value.id} style={{
                   border: '1px solid black',   
                   display:'flex', 
-                  width:'460px',
+                  width:'360px',
                   padding: '20px', 
                   flexDirection: 'column',
                   margin: '20px 50px 20px 0px'}}>
                   
-                   <div style={{overflow:'auto', width: '430px', height: '350px', marginBottom:'20px'}}>
+                   <div style={{overflow:'auto', width: '330px', height: '250px', marginBottom:'20px'}}>
                     <Link to={`/image/${value.id}`}>
                       <img
                         src={ url + `${value.label}`}
-                        alt="slide" style={{width: '400px', height: "350px", border: '1px solid black'}}
+                        alt="slide" style={{width: '300px', height: "250px", border: '1px solid black'}}
                       />
                      </Link>
 
                      <Link to={`/image/${value.id}`}>
-                     <img src={url + `${value.thumbnail}`} alt="thumbnail" style={{width: '400px', height: "340px",border: '1px solid black'}}/>
+                     <img src={url + `${value.thumbnail}`} alt="thumbnail" style={{width: '300px', height: "240px",border: '1px solid black'}}/>
                      </Link>
                
                    </div>
                    <div style={{overflow: 'hidden'}}> 
-                     <p className="cases__name cases__el"> <span style={{fontSize: '25px', fontWeight:'600'}}> Название:</span> {value.description}</p>
-                     <span className="cases__name cases__el" style={{fontSize:'25px', overflow: 'auto',fontWeight:'600' }}>Описание:</span>
-                      <div style={{overflow: 'auto', height: '300px'}}>
+                     <p className="cases__name cases__el"> <span style={{fontSize: '20px', fontWeight:'600'}}>{value.title} </span> </p>
+                      <div style={{overflow: 'auto', height: '200px'}}>
                       <p className="cases__name cases__el"> <span>{value.description ? value.description : 'Пусто'}</span></p>
                      </div>
                    </div>
@@ -654,15 +678,15 @@ const getTabContent = (tabName) => {
                   <li className="desCont"  key={value.id} style={{ 
                   border: '1px solid black',   
                   display:'flex', 
-                  width:'460px',
+                  width:'360px',
                   padding: '20px', 
                   flexDirection: 'column',
                   margin: '20px 50px 20px 0px'}}>
-                         <a style={{width: '400px', height: '350px', border: '1px solid black', marginBottom:'20px', background: '#3c9bb8', color:'white', fontFamily:'verdana'}} href={url + `${value.url}`} className="Atag"><span>Посмотреть документ</span></a>
+                         <a style={{width: '320px', height: '270px', border: '1px solid black', marginBottom:'20px', background: '#3c9bb8', color:'white', fontFamily:'verdana'}} href={url + `${value.url}`} className="Atag"><span>Посмотреть документ</span></a>
                       <div style={{overflow:'hidden'}}>
-                         <p className="cases__name cases__el"> <span style={{fontSize: '25px'}}>Название:</span> <span style={{fontSize: '16px'}}>{value.title}</span></p>
-                         <span  className="cases__name cases__el" style={{fontSize:'25px'}}>Описание:</span> 
-                          <div style={{overflow: 'auto', height: '300px'}}>
+                         <p className="cases__name cases__el"><span style={{fontSize: '20px'}}>{value.title}</span></p>
+                     
+                          <div style={{overflowY: 'auto',overflowX: 'hidden', height: '200px'}}>
                            <p className="cases__name cases__el"><span style={{fontSize: '16px'}}>{value.description ? value.description : `Пусто`}</span></p>
                           </div>
                       </div>
