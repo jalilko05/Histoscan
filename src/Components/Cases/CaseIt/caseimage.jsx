@@ -433,7 +433,7 @@ function CaseImage() {
                     className="cases__name cases__el"
                     style={{ fontSize: "15px" }}
                   >
-                    Название слайда: <span>{value.title}</span>
+                    Название слайда: <span>ded deqed  dewqde edqw edq ed dewqde edqwed edqwdd</span>
                   </p>
                 </div>
               </li>

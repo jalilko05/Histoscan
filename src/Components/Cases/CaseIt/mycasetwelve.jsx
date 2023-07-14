@@ -405,8 +405,8 @@ const getTabContent = (tabName) => {
                                     </div>
                                     <div className="case-load__text">
                                         <input disabled={caseData.status === 'в архиве'? true : false}
+                                        maxLength="10"
                                         className="case-load__title"
-                                        maxLength="50"
                                         value={filename}
                                         required
                                         style={{height: '50px'}}
@@ -507,8 +507,8 @@ const getTabContent = (tabName) => {
        return(
         <div style={{ border: '1px solid black', padding: '20px'}} >
         <div  style={{width: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
-          {/* {caseData.status === 'в работе' ? <p>У вас нет доступа</p> :  */}
-          <button onClick={SendArch} style={{width: '300px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Отправить случай в архив</button>
+          {caseData.status === 'в работе' ? <p>У вас нет доступа</p> : 
+          <button onClick={SendArch} style={{width: '300px',height:'40px', border: 'none', color:'white', background:'#3c9bb8'}}>Отправить случай в архив</button>}
          </div>
         </div>
        )

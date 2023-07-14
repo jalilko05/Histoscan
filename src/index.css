@@ -43,10 +43,10 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: black;
+    background-color: #3c9bb8;
     border-radius: 9em;
     border: 2px solid white;
-    box-shadow: inset 1px 1px 10px gray;
+    box-shadow: inset 1px 1px 10px #3c9bb8;
   }
 
   .changeInp{
