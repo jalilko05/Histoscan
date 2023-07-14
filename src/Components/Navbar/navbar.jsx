@@ -14,7 +14,7 @@ const navigate = useNavigate()
 
 
 function Out(){
-    fetch(`http://localhost/api/user/SignOut`)  
+    fetch(url + `user/SignOut`)  
     navigate('/loginPage')
 }
 
