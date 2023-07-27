@@ -112,13 +112,17 @@ function AddCase(){
                                       <label className="card__label"> <span className="card__label-info">пол</span> пациента
                                         </label>
 
+                                        <div className="inpAdd">
                                         <input checked={gender === 'М'}   onChange={handleChange} type="radio" id="contactChoice1"
                                           name="contact" value="М"/>
                                           <label style={{textDecoration: 'none', fontSize: '20px'}} htmlFor="contactChoice1">Мужской</label>
+                                        </div>
 
-                                          <input  checked={gender === 'Ж'}  onChange={handleChange} type="radio" id="contactChoice2"
+                                         <div className="inpAdd">
+                                           <input   checked={gender === 'Ж'}  onChange={handleChange} type="radio" id="contactChoice2"
                                           name="contact" value="Ж"/>
                                           <label style={{textDecoration: 'none', fontSize: '20px'}} htmlFor="contactChoice2">Женский</label>        
+                                         </div>
 
                                         </div>          
                                       

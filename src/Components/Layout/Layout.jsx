@@ -7,7 +7,7 @@ function Layout(){
     return(
         <div className="content-wrapper">
             <Navbar/>
-            <Outlet/>
+             <Outlet/>
             <Footer/>
         </div>
     )

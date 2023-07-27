@@ -58,7 +58,7 @@ function Out(){
                                   </span>
                                 </NavLink>
                             </li>
-                            <li className="navigation__item">
+                            {/* <li className="navigation__item">
                                 <span className="navigation__link" href="#">
                                     Учебный портал
                                     <div className="navigation__link-icon">
@@ -66,8 +66,8 @@ function Out(){
                                             alt="Учебный портал проекта Digital Moprhology"/>
                                     </div>
                                 </span>
-                            </li>
-                            <li className="navigation__item">
+                            </li> */}
+                            {/* <li className="navigation__item">
                                 <NavLink to={'/loginPage'}>
                                  <span className="navigation__link" href="#">
                                     Зайти в аккаунт
@@ -77,7 +77,7 @@ function Out(){
                                     </div>
                                 </span>
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li className="navigation__item">
                                 <span onClick={Out} className="navigation__link" style={{cursor: 'pointer'}}>
                                     Выйти
@@ -87,9 +87,9 @@ function Out(){
                                     </div>
                                 </span>
                             </li>
-                            <li className="navigation__item">
+                            {/* <li className="navigation__item">
                                 <a className="primary-btn" target="_blank" href="workPlaceOneMounth.html"> Рабочее место </a>
-                            </li>
+                            </li> */}
                         </ul>
                     </nav>
                 </div>

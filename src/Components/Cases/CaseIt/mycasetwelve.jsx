@@ -89,8 +89,8 @@ const [localization, setLocal] = useState('')
 const [description, setDescription] = useState('')
 const [patient_gender, setSelectedValue] = useState('');
 const [research, setResearch] = useState('')
-const [text, setText] = useState('Файл не выбран')
-const [text2, setText2] = useState('Документ не выбран')
+const [text, setText] = useState('Не выбран')
+const [text2, setText2] = useState('Не выбран')
 
 
 
@@ -339,8 +339,14 @@ const handleFormSubmit = (e) => {
       body: JSON.stringify(selectedUsers),
     })
     .then(function(res){
-      alert('Доступ к случаю успешно изменен')
-      setSelectedUsers([])
+      if(res.status === true){
+        alert('Доступ к случаю успешно изменен')
+        setSelectedUsers([])
+      } 
+      else{
+        alert('У вас нет доступа для этого действия')
+        setSelectedUsers([])
+       }
     })
   )
 };
@@ -411,7 +417,7 @@ const getTabContent = (tabName) => {
                                         required
                                         style={{height: '50px'}}
                                         onChange={handleFileNameChange}       
-                                        placeholder="Введите название файла"></input>
+                                        placeholder="Название файла"></input>
 
                                         <textarea disabled={caseData.status === 'в архиве'? true : false}
                                         onChange={handleDescriptionChange}
@@ -421,7 +427,7 @@ const getTabContent = (tabName) => {
                                         style={{height: '230px'}}
                                         name="description"
                                         className="case-load__description"
-                                        placeholder="Введите описание файла">
+                                        placeholder="Описание файла">
                                         </textarea>
                                         <textarea   maxLength="90" disabled={caseData.status === 'в архиве'? true : false} onChange={handleResearchCnahge} value={research}      
                                         name="description"
@@ -462,7 +468,7 @@ const getTabContent = (tabName) => {
                                         required
                                         style={{height: '50px'}}
                                         onChange={handleFileNameChange2}       
-                                        placeholder="Введите название документа">   
+                                        placeholder="Название документа">   
                                         </input>
                                         <textarea
                                         onChange={handleDescriptionChange2}
@@ -472,7 +478,7 @@ const getTabContent = (tabName) => {
                                         style={{height: '230px'}}
                                         name="description"
                                         className="case-load__description"
-                                        placeholder="Введите описание документа">
+                                        placeholder="Описание документа">
                                         </textarea>     
                               </div>
                    </form> 
@@ -481,7 +487,7 @@ const getTabContent = (tabName) => {
     case 'tab3': 
       return(
       <div style={{border: '1px solid black', padding: '20px'}}>
-            <div  style={{width: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
+            <div  style={{maxWidth: '707px', height: '400px', flexDirection: 'column', overflow:'auto'}}>
               {filteredUsers && filteredUsers.map((value)=>{
                 return(
                       <div key={value.id} style={{border: '1px solid black', display: 'flex', justifyContent: 'space-between', margin:'10px 0', padding: '10px', alignItems: 'center'}}>
@@ -525,14 +531,14 @@ const getTabContent = (tabName) => {
       <div className="container-primary">
         <div className="cont">
           <div className="caseDetail">
-            <div className="caseH" style={{width: '700px'}}>              
-              <p className="cases__name cases__el"> Случай: {caseData?.case_number} </p> 
-              <p className="cases__name cases__el">Имя пациента:{show ? <span> 
+            <div className="caseH" style={{maxWidth: '700px'}}>              
+              <p className="cases__name cases__el"> {caseData?.case_number} </p> 
+              <p className="cases__name cases__el">{show ? <span> 
                 {caseData.patient_fullname}</span> :
                <input maxLength="100" type="text"  value={patient_fullname}
                onChange={event =>  setName(event.target.value)}/>}  
               </p>
-              <p className="cases__name cases__el">Пол пациента: {show ? <span>  {caseData.patient_gender}</span> :   
+              <p className="cases__name cases__el">Пол: {show ? <span>  {caseData.patient_gender}</span> :   
                <span>
                 <input checked={patient_gender === 'М'}   onChange={handleChange} type="radio" id="contactChoice1"
                 name="contact" value="М"/>
@@ -549,7 +555,7 @@ const getTabContent = (tabName) => {
               </p>
              
               <div style={{display: 'flex', flexDirection: 'column'}} className="cases__name cases__el"> <p>Описание:</p>{show ? 
-              <div style={{ width: '700px',height: '200px', overflow: 'auto', fontSize: '15px'}}> 
+              <div style={{ maxWidth: '700px',height: '200px', overflow: 'auto', fontSize: '15px', textDecoration:'none'}}> 
                 {caseData.description}
                 </div> :
                <textarea maxLength="1000" style={{resize: 'none', height:'200px'}} type="text"  value={description}
@@ -570,7 +576,7 @@ const getTabContent = (tabName) => {
             </div>}
             </div>
 
-                    <div style={{display: 'flex', flexDirection:'column'}}>
+                    <div className="TwelveBtn" style={{display: 'flex', flexDirection:'column'}}>
                         <div style={{display: 'flex'}}>
                          <div className="tab" style={{marginRight: '10px'}}>
                            <button 
@@ -586,14 +592,14 @@ const getTabContent = (tabName) => {
                                Документы
                              </button>
                            </div>
-                           <div className="tab" style={{marginRight: '10px'}}>
+                           <div className="tab" style={{marginRight: '15px'}}>
                              <button disabled={caseData.status === 'в архиве'? true : false}
                                className={`tab-btn ${activeTab === 'tab2' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab3')}>
                                Поделиться
                              </button>
                            </div>
-                           <div className="tab" style={{marginRight: '10px'}}>
+                           <div className="tab" >
                              <button disabled={caseData.status === 'в архиве'? true : false}
                                className={`tab-btn ${activeTab === 'tab2' ? 'active' : ''}`}
                                onClick={() => handleTabClick('tab4')}>
@@ -633,8 +639,9 @@ const getTabContent = (tabName) => {
                           }
                     </div>
          </div> 
+
           <div>
-            <h3 className="cases__name cases__el" style={{fontSize:'25px', fontWeight:'600s'}}>Слайды:</h3>
+            <h3 className="cases__name cases__el" style={{fontSize:'25px', fontWeight:'600s', marginTop: '30px'}}>Слайды:</h3>
              <ul style={{display: 'flex', flexWrap: 'wrap'}}>
               {material &&
                 material.map((value) => (
@@ -671,7 +678,7 @@ const getTabContent = (tabName) => {
            </div>   
 
           <div>
-            <h3 className="cases__name cases__el" style={{fontSize:'20px', fontWeight:'600s'}}>Document:</h3>
+            <h3 className="cases__name cases__el" style={{fontSize:'20px', fontWeight:'600s'}}>Документы:</h3>
             <ul style={{display: 'flex', flexWrap: 'wrap'}}>
               {doc &&
                 doc.map((value) => (

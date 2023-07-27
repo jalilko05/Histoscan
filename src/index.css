@@ -48,11 +48,18 @@
     border: 2px solid white;
     box-shadow: inset 1px 1px 10px #3c9bb8;
   }
-
+ 
+   input{
+    border: none;
+    padding: 5px;
+   }
+   textarea{
+    border: none;
+    padding: 5px;
+   }
   .changeInp{
     display: flex;
-    flex-direction: column;
-    height: 200px;
+    height: 50px;
     justify-content: space-between;
   }
 
@@ -81,17 +88,11 @@
     height: 200px;
     border: 1px solid black;
   }
-  .files{
-
-  }
- .case-load{
-
-  }
-
+  
 .caseDetail{
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 20px;  
 }
 
 .caseH{
@@ -101,6 +102,11 @@
   flex-direction: column;
   margin-bottom: 100px;
   overflow: hidden;
+ 
+}
+
+.caseH p{
+  text-transform: none;
 }
 
 .caseH h2{
@@ -133,9 +139,9 @@
 
 .TabCont{
   display: flex;
-  width: 663.3px;
+  max-width: 663.3px;
   justify-content: space-between;
-  margin-left: 20px;
+  margin-right: 3px;
 }
 
 .tab button{
@@ -151,4 +157,12 @@
 .tab button:active{
   background: white;
  margin-bottom: 20px;
+}
+
+.profi__info div input p button {
+  transition: all 0.2s ease;
+}
+
+.user-case__secondary{
+  transition: all 0.2s ease;
 }

@@ -10,6 +10,7 @@ import CaseDetail from "../Cases/CaseIt/mycasetwelve"
 import CaseImage from "../Cases/CaseIt/caseimage"
 import Reset from '../Login/Reset.jsx'
 import NewWord from "../Login/NewWord"
+
 function Root(){
     return(
         <>

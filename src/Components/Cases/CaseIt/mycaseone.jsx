@@ -10,11 +10,8 @@ function CaseOne(){
     const [info, setInfo] = useState({ data: []});
     const [userData, setCaseData] = useState(null);
    
-
     const [available, setAvailable] = useState([])
     const [archi, setArchi] = useState([])
-
-
 
     const [isPostSuccess, setIsPostSuccess] = useState(false);
  //////////////////////////////////////////////////////////////////////
@@ -154,13 +151,13 @@ const getTabContent = (tabName) => {
       return <div> 
          {info.data && info.data.map((value) => {  
         return( 
-            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.case_number}>
+            <div className="user-case__secondary" style={{margin: '0px 0px 20px 0px'}}  key={value.case_number}>
                  <div className="user-case__description" style={{overflow: 'hidden'}}>
                  <div className="cases__info" >
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div className="cases__name cases__el">
-                        Случай :
-                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.case_id}</span>
+                     
+                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.case_number}</span>
                   </div>
                   <div  className="cases__name cases__el" style={{marginRight: '20px'}}>
                  
@@ -168,18 +165,20 @@ const getTabContent = (tabName) => {
                   </div>
                     </div>
                     <div className="cases__name cases__el">
-                        фио:
+                     
                         <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
                     </div>    
-                    <div className="cases__localization data-localization cases__el">
-                        Локализация:
+                    <div className="cases__localization data-localization cases__el ">
+                       
                         <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
                     </div>
                     <div className="cases__description data-description cases__el">
-                        Описание:
+                        
                         <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}} >{value.description}</span>
                     </div>
-                    <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                   <div className="CaseLink">
+                   <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                   </div>
                 </div>
                 </div>          
              </div>
@@ -189,40 +188,40 @@ const getTabContent = (tabName) => {
       return <div>
           {available.map((value)=>{
             return(
-            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.id}>
+            <div className="user-case__secondary" style={{margin: '0px 0px 20px 0px'}}  key={value.id}>
               <div className="user-case__description" style={{overflow: 'hidden'}}>
               <div className="cases__info" >
               <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div className="cases__name cases__el">
-                        Случай :
-                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.id}</span>
+                       
+                        <span  className="cases__name-user" style={{border: '1px solid transparent'}}>{value.case_number}</span>
                   </div>
                   <div  className="cases__name cases__el" style={{marginRight: '20px'}}>
                     
-                    <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.created_at}</span>
+                    <span className="cases__name-user" style={{border: '1px solid transparent'}}>{value.created_at}</span>
                   </div>
                     </div>
                  <div className="cases__name cases__el">
-                     фио:
-                     <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
+                     <span className="cases__name-user" style={{border: '1px solid transparent'}}>{value.patient_fullname}</span>
                  </div>    
+                 <div className="cases__localization data-localization cases__el">
+                 <span className="cases__localization-info" style={{border: '1px solid transparent'}}>{value.localization}</span>
+                 </div>
                  <div className="cases__name cases__el">
                    Название организации :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.organization_name}</span>
+                   <span className="cases__name-user" style={{border: '1px solid transparent'}}>{value.organization_name}</span>
                </div>   
+            
                  <div className="cases__localization data-localization cases__el">
-                     Локализация:
-                     <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
+                   Владелец:
+                   <span className="cases__localization-info" style={{border: '1px solid transparent'}}>{value.creator_full_name}</span>
                  </div>
-                 <div className="cases__localization data-localization cases__el">
-                   Имя создателя:
-                   <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.creator_full_name}</span>
+                 <div className="cases__description data-description cases__el caseDes">
+                     <span className="cases__description-info" style={{border: '1px solid transparent'}}>{value.description}</span>
                  </div>
-                 <div className="cases__description data-description cases__el">
-                     Описание:
-                     <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
-                 </div>
-                 <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+               <div className="CaseLink">
+                <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+              </div>
              </div>
              </div>          
           </div>
@@ -234,40 +233,42 @@ const getTabContent = (tabName) => {
       return <div>
         {archi.map((value)=>{
           return(
-            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.case_number}>
+            <div className="user-case__secondary" style={{margin: '0px 0px 20px 0px'}}  key={value.case_number}>
             <div className="user-case__description" style={{overflow: 'hidden'}}>
             <div className="cases__info" >
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div className="cases__name cases__el">
-                        Случай :
-                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.id}</span>
+                      
+                        <span  className="cases__name-user" style={{border: '1px solid transparent' }}>{value.case_number}</span>
                   </div>
                   <div  className="cases__name cases__el" style={{marginRight: '20px'}}>
                 
-                    <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.created_at}</span>
+                    <span className="cases__name-user" style={{border: '1px solid transparent' }}>{value.created_at}</span>
                   </div>
                     </div>
                <div className="cases__name cases__el">
-                   фио :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
+                  
+                   <span className="cases__name-user" style={{border: '1px solid transparent'}}>{value.patient_fullname}</span>
                </div>   
-               <div className="cases__name cases__el">
+               <div className="cases__el">
+                   <span className="cases__name-user"  style={{border: '1px solid transparent'}}>{value.localization}</span>
+               </div>  
+               <div className=" cases__el">
                    Название организации :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.organization_name}</span>
+                   <span  style={{border: '1px solid transparent'}}>{value.organization_name}</span>
                </div>   
-               <div className="cases__name cases__el">
-                   Локализация :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
-               </div>   
+              
                <div className="cases__localization data-localization cases__el">
-                   Имя создателя:
-                   <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.creator_full_name}</span>
+                   Владелец:
+                   <span className="cases__localization-info" style={{border: '1px solid transparent', }}>{value.creator_full_name}</span>
                </div>
                <div className="cases__description data-description cases__el">
-                   Описание:
-                   <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
+              
+                   <span className="cases__description-info" style={{border: '1px solid transparent',}}>{value.description}</span>
                </div>
-               <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                   <div className="CaseLink">
+                    <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                   </div>
            </div>
            </div>          
         </div>
@@ -280,13 +281,13 @@ const getTabContent = (tabName) => {
          <div> 
          {info.data && info.data.map((value) => {  
         return( 
-            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.case_number}>
+            <div className="user-case__secondary" style={{margin: '0px 0px 20px 0px'}}  key={value.case_number}>
                  <div className="user-case__description" style={{overflow: 'hidden'}}>
                  <div className="cases__info" >
                  <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div className="cases__name cases__el">
-                        Случай :
-                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.case_id}</span>
+               
+                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.case_number}</span>
                   </div>
                   <div  className="cases__name cases__el" style={{marginRight: '20px'}}>
                
@@ -294,18 +295,20 @@ const getTabContent = (tabName) => {
                   </div>
                     </div>
                     <div className="cases__name cases__el">
-                        фио:
+                   
                         <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
                     </div>    
                     <div className="cases__localization data-localization cases__el">
-                        Локализация:
+                   
                         <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
                     </div>
                     <div className="cases__description data-description cases__el">
-                        Описание:
+                   
                         <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
                     </div>
-                    <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                      <div className="CaseLink">
+                       <Link to={`/case/${value.case_id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
+                      </div>
                 </div>
                 </div>          
              </div>
@@ -315,13 +318,13 @@ const getTabContent = (tabName) => {
            <div>
           {available.map((value)=>{
             return(
-            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.id}>
+            <div className="user-case__secondary" style={{margin: '0px 0px 20px 0px'}}  key={value.id}>
               <div className="user-case__description">
               <div className="cases__info" >
               <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div className="cases__name cases__el">
-                        Случай :
-                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.id}</span>
+                   
+                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.case_number}</span>
                   </div>
                   <div  className="cases__name cases__el" style={{marginRight: '20px'}}>
               
@@ -329,15 +332,15 @@ const getTabContent = (tabName) => {
                   </div>
                     </div>
                  <div className="cases__name cases__el">
-                     фио:
+                    
                      <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
                  </div>    
                  <div className="cases__localization data-localization cases__el">
-                     Локализация:
+                     
                      <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
                  </div>
                  <div className="cases__description data-description cases__el">
-                     Описание:
+                   
                      <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
                  </div>
                  <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
@@ -347,49 +350,7 @@ const getTabContent = (tabName) => {
             )
           })}
       </div>
-           <div>
-        {archi.map((value)=>{
-          return(
-            <div className="user-case__secondary" style={{margin: '0px 20px 20px 20px'}}  key={value.case_number}>
-            <div className="user-case__description">
-            <div className="cases__info" >
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <div className="cases__name cases__el">
-                        Случай :
-                        <span  className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.id}</span>
-                  </div>
-                  <div  className="cases__name cases__el" style={{marginRight: '20px'}}>
-               
-                    <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.created_at}</span>
-                  </div>
-                    </div>
-               <div className="cases__name cases__el">
-                   фио :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.patient_fullname}</span>
-               </div>   
-               <div className="cases__name cases__el">
-                   Название организации :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.organization_name}</span>
-               </div>   
-               <div className="cases__name cases__el">
-                   Локализация :
-                   <span className="cases__name-user" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.localization}</span>
-               </div>   
-               <div className="cases__localization data-localization cases__el">
-                   Имя создателя:
-                   <span className="cases__localization-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.creator_full_name}</span>
-               </div>
-               <div className="cases__description data-description cases__el">
-                   Описание:
-                   <span className="cases__description-info" style={{border: '1px solid transparent', padding:'4px 8px'}}>{value.description}</span>
-               </div>
-               <Link to={`/case/${value.id}`}> <button   className="save-changes primary-btn">Открыть</button></Link>
-           </div>
-           </div>          
-        </div>
-          )
-        })}
-      </div>
+           
         </div>
       );
     default:
@@ -404,49 +365,49 @@ const getTabContent = (tabName) => {
                 <div className="user-case">
                  <div className="user-case__inner">
                     <div className="user-case__primary">
-                            <div className="profi">
+                    <div className="profi">
                                 <div className="profi__img">
                                     <img src={Prof} alt="Сидоров Антон Петрович"/>
-                                    <button className="profi__btn" id="profi-btn"> Править данные </button>
                                 </div>
-                                <div className="profi__info">
+                                <div className="profi__info" style={{width: '250px', transition: 'all 3s'}}>
                                 {userData && (
                                    <div>  
-                                     <p  className="cases__name cases__el">Имя: {userData.first_name}</p>
-                                     <p  className="cases__name cases__el">Отчество: {userData.middle_name}</p>
-                                     <p  className="cases__name cases__el">Фамилия: {userData.last_name}</p>
-                                     <p  className="cases__name cases__el">Должность: {userData.position}</p>
-                                     <p  className="cases__name cases__el">Email: {userData.email}</p>
-                                     <p  className="cases__name cases__el">Телефон: {userData.phone}</p>
+                                     <p  className="cases__name cases__el"> {showInput ? <input
+                        type="text"
+                        placeholder={userData.middle_name}
+                        value={middle_name}
+                        onChange={event => setMidName(event.target.value)}
+                        />  : userData.middle_name}</p>
+
+                         <p  className="cases__name cases__el"> {showInput ?      <input
+                        type="text"
+                        placeholder={userData.first_name}
+                        value={first_name}
+                        onChange={event =>  setName(event.target.value)}
+                        /> : userData.first_name}</p>
+
+                                     <p  className="cases__name cases__el"> {showInput?   <input value={last_name}
+                        onChange={event =>  setLastName(event.target.value)} placeholder={userData.last_name} type="text" />: userData.last_name} </p>
+
+                                     <p  className="cases__name cases__el"> {showInput ?    <input value={email}
+                        onChange={event =>  setEmail(event.target.value)}  type="email" placeholder={userData.position} />: userData.position} </p>
+
+                                     <p  className="cases__name cases__el"> {showInput ?    <input value={email}
+                        onChange={event =>  setPhone(event.target.value)} type="phone"  placeholder={userData.email} />: userData.email}</p>
+                        
+                                     <p  className="cases__name cases__el"> {showInput ?   <input value={phone}
+                                       maxLength="12" minLength="12"
+                        onChange={event =>  setPhone(event.target.value)} type="phone"  placeholder={userData.phone} />: userData.phone} </p>
                                    </div>
                                   )}
                                   {showInput ?
                     <div className="changeInp">
-                      <input
-                        type="text"
-                        placeholder="Имя"
-                        value={first_name}
-                        onChange={event =>  setName(event.target.value)}
-                      />
-                      <input
-                        type="text"
-                        placeholder="Отчество"
-                        value={middle_name}
-                        onChange={event => setMidName(event.target.value)}
-                      />   
-                      <input value={last_name}
-                        onChange={event =>  setLastName(event.target.value)} placeholder="Фамилия" type="text" />
-                      <input value={email}
-                        onChange={event =>  setEmail(event.target.value)}  type="email" placeholder="Email" />
-                      <input value={phone}
-                        onChange={event =>  setPhone(event.target.value)} type="phone"  placeholder="Телефон" />
-                    
                       <button onClick={ChangeSubmit}>Отправить</button> <button onClick={Close}>Отменить</button>
                     </div> :
                      <button onClick={handleButtonClick}>Изменить данные</button> 
-                   } 
+                    } 
                                 </div>
-                            </div>            
+                            </div>                
                         </div>  
   
                     <div className="my-cases__secondary">
@@ -481,7 +442,7 @@ const getTabContent = (tabName) => {
                            </div>
                     </div>
         
-                      <div>
+                      <div style={{padding: '0 2px 0 0'}}>
                           <div className="tab-content">
                             {getTabContent(activeTab)}
                          </div>
@@ -492,7 +453,7 @@ const getTabContent = (tabName) => {
                         <div className="user-case__block">
                             <div className="add-case">
                                 <Link  to='/addCase' className="add-case__link" >
-                                    Добавить <br/> случай
+                                    Добавить случай
                                 </Link>
  
                             </div>

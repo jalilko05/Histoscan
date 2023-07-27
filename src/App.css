@@ -86,3 +86,148 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.profi__info {
+  height: 300px;
+}
+.profi__info p{
+  font-weight: 600;
+  height: 40px;
+}
+
+.profi__info input{
+  width: 235px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+}
+
+.profi__info button{
+  width: 200px;
+  height: 40px;
+  background: #3c9bb8;
+  color: white;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.logLinks{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation__list{
+  margin-left: 30px;
+}
+
+.add-el__primary{
+  margin-right: 30px;
+}
+.add-el__secondary{
+  margin-left: 0;
+}
+
+.primary-btn{
+  margin: 0;
+}
+
+@media (max-width: 400px) {
+  .header__inner.work-place .navigation__item + .navigation__item {
+    margin-left: 0;
+  }
+  .logLinks h4{
+    font-size: 16px;
+  }
+  .caseDes{
+    overflow: auto;
+    height: 300px;
+  }
+  .CaseLink{
+    display: flex;
+    justify-content: center;
+  }
+  .add-case__link{
+    width: 400px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 0;
+  }
+  .profi__img{
+    display: none;
+  }
+  .card__inner{
+    width: 360px;
+  }
+  .card__inner input{
+    width: 360px;
+  }
+  .TwelveBtn button{
+    font-size: 14px;
+  }
+}
+
+.inpAdd{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 180px;
+}
+.inpAdd input{
+  margin: 10px 0;
+  width: 50px;
+  height: 16px;
+}
+
+@media (max-width: 600px) {
+  .tab button{
+      width: 100px;
+  }
+}
+@media (max-width: 480px) {
+  .tab button{
+      width: 80px;
+  }
+}
+
+
+
+
+
+@media (max-width: 1390px) {
+  .header__inner.work-place .navigation__list {
+    flex-wrap: wrap;
+  }
+  .header__inner.work-place .navigation__item {
+    margin-bottom: 24px;
+  
+  }
+  .header__inner.work-place .navigation__item:last-child {
+    margin-right: 0;
+  }
+  .header__inner.work-place .navigation__item + .navigation__item {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1500px) {
+  .caseDetail{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .case-load{
+    flex-direction: column;
+  }
+  .case-load__file{
+    margin-bottom: 30px;
+  }
+  .case-load__text{
+    margin-left: 0;
+    width: 100%;
+  }
+  .case-load__text input{
+    width: 100%;
+    max-width: 500px;
+  }
+}

@@ -76,7 +76,7 @@ function LoginPage(){
                                         minLength="6" maxLength="10" id="pass" required name="password" type="password"
                                         placeholder=".........." className="card__input card-pass"/>
                                 </div>
-                              <div style={{display: 'flex', alignItems: 'center', justifyContent:'space-between'}}>
+                              <div className="logLinks">
                               <Link onClick={handleClick} className="card__label" to='/subscription/subscriptionSettingOneMounth'><h4>Зарегистрироваться</h4></Link>
                               <Link className="card__label" to='/Reset'><h4>Сбросить пароль</h4></Link>
                               </div>
